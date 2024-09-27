@@ -1,0 +1,15 @@
+body{
+    font: 18px/1.5 sans-serif;
+
+    color: rgb(238, 158, 158);
+}
+table,
+td{
+    border: 1px solid rgb(231, 25, 25);
+}
+td {
+    padding: 10px 20px 30px 40px ;
+}
+#target{
+    text-align: right;
+}

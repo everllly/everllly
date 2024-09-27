@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet"href="style3.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <h1><b>Coffee blog</b></h1>
+    <div>
+    <label for="name"><b>Название напитка</b></label>
+    <input type="text" id="name" name="title" placeholder="Американо">
+    </div>
+    <div>
+    <label for="name"><b>Сорт кофе</b></label>
+    <select name="sort" id="type">
+    <option><b>Гватемала</b></option></select>
+    </div>
+    <div>    
+        <label for="name"><b>Крепость обжарки</b></label>
+        <br>
+        <input type="radio" id="strong" name="strong" value="Крепкая"> 
+        <label for="strong">Крепкая</label> 
+        <br>
+        <input type="radio" id="medium" name="strong" value="Средняя" checked> 
+        <label for="medium">Средняя</label> 
+        <br>
+        <input type="radio" id="light" name="strong" value="Легкая"> 
+        <label for="light">Легкая</label>
+        <br>
+    </div>
+    <label for="name"><b>Изображение</b></label>
+    <input type="text" id="name" name="image" placeholder="http://site.com/img.png">
+    </div>
+    <div>
+    <label for="name"><b>Стоимость напитка</b></label> 
+    <input type="text" id="cost" name="cost" placeholder="100">
+    </div>
+    <div> 
+    <label for="name"><b>Описание</b></label>
+    <textarea id="description" name="description">Изисканный вкус и аромат </textarea>
+    </div>
+    <div>
+    <input type="submit"
+    value="Добавить напиток">    
+    </div>
+    </form>
+    <br>
+    <table id="table">
+        <thead>
+        <tr>
+            <td>Изображение</td>
+            <td>Название</td>
+            <td>Сорт</td>
+            <td>Крепость обжарки</td>
+            <td>Стоимость</td>
+            <td>Описание</td>
+        </tr>
+    </thead>
+</body>
+<script> 
+    const f = document.forms[0]; 
+    let tr = document.getElementById("table"); 
+    let t = tr; 
+    f.addEventListener("submit", (e) => { 
+        e.preventDefault(); 
+        let body = {}; 
+        for (let i = 0; i < f.elements.length; i++) { 
+            let tag = f[i]; 
+            if (tag.name) { 
+                if (tag.type === "radio" && tag.checked) { 
+                    body[tag.name] = tag.value; 
+                } else if (tag.type !== "radio") { 
+                    body[tag.name] = tag.value; 
+                } 
+            } 
+        } 
+        console.log(body); 
+        let html = "<tr>"; 
+        html += `<td><img src="${body.image}" width="50" alt="${body.title}"></td>`; 
+        html += `<td>${body.title || ""}</td>`; 
+        html += `<td>${body.sort || ""}</td>`; 
+        html += `<td>${body.strong || ""}</td>`; 
+        html += `<td>${body.cost || ""}</td>`; 
+        html += `<td>${body.description || ""}</td>`; 
+        html += `</tr>`
+        t.innerHTML += html; 
+    }) 
+</script>
+</html>
